@@ -1,20 +1,25 @@
 package randomWalk;
 
-class D2Inner {
-	static boolean isInbounds(D2MovingPoint point){
-		if(point.getXCoodinate() < -2 || point.getXCoodinate() > 2){
+public class D2Inner {
+
+	public static boolean isInbounds(double x, double y){
+		if(x < -1 || x > 1){
 			return false;
 		}
 
-		if(point.getYCoodinate() < -2 || point.getYCoodinate() > 2){
+		if(y < -1 || y > 1){
 			return false;
 		}
 
 		return true;
 	}
 
-	static double getScore(D2MovingPoint point){
-		if(point.getYCoodinate() >2){
+	public static boolean isInbounds(D2MovingPoint point){
+		return isInbounds(point.getXCoodinate(), point.getYCoodinate());
+	}
+
+	public static double getScore(D2MovingPoint point){
+		if(point.getYCoodinate() >1){
 			return 5;
 		}
 
