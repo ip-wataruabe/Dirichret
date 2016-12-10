@@ -1,10 +1,10 @@
 package randomWalk;
 
 class D2MovingPoint {
-	double x;
-	double y;
+	int x;
+	int y;
 
-	D2MovingPoint(double x, double y){
+	D2MovingPoint(int x, int y){
 		this.x = x;
 		this.y = y;
 	}
@@ -25,11 +25,11 @@ class D2MovingPoint {
 		this.y--;
 	}
 
-	double getXCoodinate(){
+	int getXCoodinate(){
 		return this.x;
 	}
 
-	double getYCoodinate(){
+	int getYCoodinate(){
 		return this.y;
 	}
 

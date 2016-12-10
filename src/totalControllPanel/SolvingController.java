@@ -8,17 +8,17 @@ import randomWalk.WalkingController;
 public class SolvingController {
 	public static void main(String[] args){
 		WalkingController dirichlet = new WalkingController();
-		double startXCoordinate;
-		double startYCoordinate;
+		int startXCoordinate;
+		int startYCoordinate;
 
 		Scanner scanner = new Scanner(System.in);
 
 		do{
 			System.out.println("Input x coodination");
-			startXCoordinate = scanner.nextDouble();
+			startXCoordinate = scanner.nextInt();
 
 			System.out.println("Input y coodination");
-			startYCoordinate = scanner.nextDouble();
+			startYCoordinate = scanner.nextInt();
 
 			if(D2Inner.isInbounds(startXCoordinate, startYCoordinate)){
 				break;

@@ -2,7 +2,7 @@ package randomWalk;
 
 public class D2Inner {
 
-	public static boolean isInbounds(double x, double y){
+	public static boolean isInbounds(int x, int y){
 		if(x < -1 || x > 1){
 			return false;
 		}
