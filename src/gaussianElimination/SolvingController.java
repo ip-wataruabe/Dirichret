@@ -2,8 +2,20 @@ package gaussianElimination;
 
 public class SolvingController {
 	public static void main(String[] args){
-		//x-y=0,x+y=2
-		double[][] simultaneousEquationArray = {{1, -1, 0},{1, 1, 2}};
+		// 去年のアドベントカレンダー
+		// http://interprism.hatenablog.com/entry/dirichlet_problem_by_java
+		// のディリクレ問題
+		double[][] simultaneousEquationArray = {
+				{4, -1, 0, -1, 0, 0, 0, 0, 0, 5},
+				{-1, 4, -1, 0, -1, 0, 0, 0, 0, 5},
+				{0, -1, 4, 0, 0, -1, 0, 0, 0, 5},
+				{-1, 0, 0, 4, -1, 0, -1, 0, 0, 0},
+				{0, -1, 0, -1, 4, -1, 0, -1, 0, 0},
+				{0, 0, -1, 0, -1, 4, 0, 0, -1, 0},
+				{0, 0, 0, -1, 0, 0, 4, -1, 0, 0},
+				{0, 0, 0, 0, -1, 0, -1, 4, -1, 0},
+				{0, 0, 0, 0, 0, -1, 0, -1, 4, 0}
+				};
 
 		Simultaneousness simultaneousness =
 				new Simultaneousness(
