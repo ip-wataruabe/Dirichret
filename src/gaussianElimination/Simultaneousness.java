@@ -7,14 +7,14 @@ public class Simultaneousness {
 		this.simultaneousEquation = simultaneousEquation;
 	}
 
-	static Equation[] twoDimensionalArrayAdapter(double[][] equations){
-		Equation[] adaptedEquation = new Equation[equations.length];
-		for(int i = 0; i < equations.length; i++){
-			double[] coefficients = new double[equations[i].length - 1];
-			for(int j = 0; j < equations[i].length-1; j++){
-				coefficients[j] = equations[i][j];
+	static Equation[] twoDimensionalArrayAdapter(double[][] coefficientMatrix, double[] constants){
+		Equation[] adaptedEquation = new Equation[coefficientMatrix.length];
+		for(int i = 0; i < coefficientMatrix.length; i++){
+			double[] coefficients = new double[coefficientMatrix[i].length];
+			for(int j = 0; j < coefficientMatrix[i].length; j++){
+				coefficients[j] = coefficientMatrix[i][j];
 			}
-			adaptedEquation[i] = new Equation(coefficients, equations[i][equations[i].length-1]);
+			adaptedEquation[i] = new Equation(coefficients, constants[i]);
 		}
 
 		return adaptedEquation;
