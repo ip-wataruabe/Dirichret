@@ -49,17 +49,17 @@ public class Simultaneousness {
 
 	void solve(){
 		forwardElimination();
-		System.out.println("The coefficient matrix is changed to ");
-		System.out.println();
-		for(int i = 0; i < this.simultaneousEquation.length; i++){
-			for(int j = 0; j < this.simultaneousEquation[i].coefficients.length; j++){
-				System.out.print(this.simultaneousEquation[i].coefficients[j] + " ");
-			}
-			System.out.println("| " + this.simultaneousEquation[i].rightHandSide);
-		}
-		System.out.println(".");
+//		System.out.println("The coefficient matrix is changed to ");
+//		System.out.println();
+//		for(int i = 0; i < this.simultaneousEquation.length; i++){
+//			for(int j = 0; j < this.simultaneousEquation[i].coefficients.length; j++){
+//				System.out.print(this.simultaneousEquation[i].coefficients[j] + " ");
+//			}
+//			System.out.println("| " + this.simultaneousEquation[i].rightHandSide);
+//		}
+//		System.out.println(".");
 
-		System.out.println("Also, the solution is");
+		System.out.println("The solution by my first Gausian Elimination Program is");
 		double[] solution = backwordSubstitution();
 		String camma = "[ ";
 		for(double element:solution){

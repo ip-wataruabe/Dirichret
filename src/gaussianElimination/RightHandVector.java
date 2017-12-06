@@ -14,4 +14,12 @@ public class RightHandVector {
 	double getValue(int row){
 		return this.vector[row];
 	}
+
+	double[] getValue(){
+		return this.vector;
+	}
+
+	void reset(double[] newVector){
+		this.vector = newVector;
+	}
 }
