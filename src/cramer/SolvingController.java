@@ -32,7 +32,7 @@ public class SolvingController {
 		double[] heatDistribution = stickHeat.solveBySimpleCramersRule();
 		long heatEnd = System.nanoTime();
 
-		System.out.println(heatDistribution[3]);
+		System.out.println(heatDistribution[1]);
 
 		System.out.println("-------time-------");
 		System.out.println(heatEnd-heatStart);
