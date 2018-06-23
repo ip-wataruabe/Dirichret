@@ -5,7 +5,7 @@ public class SolvingController {
 		// 去年のアドベントカレンダー
 		// http://interprism.hatenablog.com/entry/dirichlet_problem_by_java
 		// のディリクレ問題
-		double[][] simultaneousEquationCoefficients = makeSimpleDirichtelCoefficients(2);
+		double[][] simultaneousEquationCoefficients = makeSimpleDirichtetCoefficients(3);
 //			{
 //				{4, -1, 0, -1, 0, 0, 0, 0, 0},
 //				{-1, 4, -1, 0, -1, 0, 0, 0, 0},
@@ -18,7 +18,7 @@ public class SolvingController {
 //				{0, 0, 0, 0, 0, -1, 0, -1, 4}
 //				};
 
-		double[] constants = makeConstants(2);
+		double[] constants = makeConstants(3);
 //			{5, 5, 5, 0, 0, 0, 0, 0, 0};
 
 		Simultaneousness simultaneousness =
@@ -30,15 +30,12 @@ public class SolvingController {
 		simultaneousness.solve();
 		long simpleGEEnd = System.nanoTime();
 
-		double[] initialCondition = {5,5,5,5,5,5,5,5,5};
+		cramer.Equation plateHeat = new cramer.Equation(simultaneousEquationCoefficients, constants);
 
-		VectorEquation vectorEquation =
-				VectorEquation.createByDoubleNumbers(simultaneousEquationCoefficients, initialCondition);
-
-		System.out.println("Next, let us see the LU program");
+		System.out.println("Next, let us see the Cramer's Rule program");
 
 		long withLUStart = System.nanoTime();
-		double[] heat = vectorEquation.solveAsHeatEquation(100);
+		double[] heat = plateHeat.solveByCofactorExpansion();
 		long withLUEnd = System.nanoTime();
 		System.out.println("Finally, the solution is");
 		String camma = "[ ";
@@ -50,11 +47,33 @@ public class SolvingController {
 
 		System.out.println(" ].");
 
+		System.out.println("---------------------------------");
+		// ヤコビ法
+		double[] firstSolution = {0, 0, 0, 0, 0, 0, 0, 0, 0};
+		jacobiMethod.Equation jacobiPlate =
+				new jacobiMethod.Equation(simultaneousEquationCoefficients, constants, firstSolution);
+
+		System.out.println("Finally, let us see the Jacobi method");
+		long jacobiStart = System.nanoTime();
+		double[] jacobiHeat = jacobiPlate.solveByNumberOfIterations(1000);
+		long jacobiEnd = System.nanoTime();
+		System.out.println("Finally, the solution is");
+		camma = "[ ";
+		for(double element:jacobiHeat){
+			System.out.print(camma);
+			System.out.print(element);
+			camma = " , ";
+		}
+
+		System.out.println(" ].");
+
 		System.out.println("--------time--------");
 		long simpleGETime = simpleGEEnd - simpleGEStart;
 		long withLUTime = withLUEnd - withLUStart;
+		long jacobiTime = jacobiEnd - jacobiStart;
 		System.out.println("First Gausian Elimination:" + simpleGETime);
-		System.out.println("Gausian Elimination with LU:" + withLUTime);
+		System.out.println("Cramer's Rule with cofactor:" + withLUTime);
+		System.out.println("The Jacobi method:" + jacobiTime);
 				System.out.println("---------------------------------");
 
 		//何も考えずに消去法で解くと計算機が計算ミスをする例･･･のはずだった。
@@ -69,7 +88,7 @@ public class SolvingController {
 //		stewartSimultaneousness.solve();
 	}
 
-	private static double[][] makeSimpleDirichtelCoefficients(int areaLength){
+	private static double[][] makeSimpleDirichtetCoefficients(int areaLength){
 		int squareMeasure = areaLength*areaLength;
 		double[][] coefficientMatrix = new double[squareMeasure][squareMeasure];
 		for(int point = 0; point< squareMeasure ;point++){
