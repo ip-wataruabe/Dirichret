@@ -30,4 +30,25 @@ public class Equation {
 
 		return this.mediateSolution;
 	}
+
+	public double[] solveByPricision(double pricision){
+		double[] oldSolution;
+		do {
+			oldSolution = this.mediateSolution.clone();
+			fleshMediateSolution();
+		} while(!efficientPricision(pricision, oldSolution));
+
+		return this.mediateSolution;
+	}
+
+	private boolean efficientPricision(double pricision, double[] oldSolution){
+		for(int index = 0; index < oldSolution.length; index++){
+			double difference = this.mediateSolution[index] - oldSolution[index];
+			if(difference > pricision || -pricision > difference){
+				return false;
+			}
+		}
+
+		return true;
+	}
 }

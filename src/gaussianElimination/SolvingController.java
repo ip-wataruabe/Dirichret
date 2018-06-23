@@ -49,13 +49,15 @@ public class SolvingController {
 
 		System.out.println("---------------------------------");
 		// ヤコビ法
+		// 小数第4桁程度の精度を期待する場合、アホみたいに速く計算できる。
 		double[] firstSolution = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 		jacobiMethod.Equation jacobiPlate =
 				new jacobiMethod.Equation(simultaneousEquationCoefficients, constants, firstSolution);
 
 		System.out.println("Finally, let us see the Jacobi method");
 		long jacobiStart = System.nanoTime();
-		double[] jacobiHeat = jacobiPlate.solveByNumberOfIterations(1000);
+		// double[] jacobiHeat = jacobiPlate.solveByNumberOfIterations(1000);
+		double[] jacobiHeat = jacobiPlate.solveByPricision(0.00001);
 		long jacobiEnd = System.nanoTime();
 		System.out.println("Finally, the solution is");
 		camma = "[ ";
